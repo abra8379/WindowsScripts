@@ -1,0 +1,58 @@
+@echo off
+cls
+echo El nuevo nombre del equipo sera...
+echo %1
+echo Si no es correcto pulsa Ctrl+C para interrumpir la ejecución del programa
+pause
+reg add HKLMSYSTEMCurrentControlSetControlComputerNameActiveComputerName/v ComputerName /t REG_SZ /d %1 /f
+reg add HKLMSYSTEMCurrentControlSetControlComputerNameComputerName/v ComputerName /t REG_SZ /d %1 /f
+reg add HKLMSYSTEMCurrentControlSetservicesTcpipParameters /v "NV Hostname" /t REG_SZ /d %1 /f
+reg add HKLMSYSTEMCurrentControlSetservicesTcpipParameters /v Hostname /t REG_SZ /d %1 /f
+shutdown -r -t 30 -f -c "Se ha cambiado el nombre del equipo, el sistema se reiniciara en 30 seg
+
+
+
+
+
+explicacion
+
+Ahora voy a desmonatrlo un poco para que todos lo podamos entender sin problemas, vamos a ver…
+
+%1
+Variable que toma su valor de lo que escribamos a continuación del nombre del script, por ejemplo si el script se llama cambionombre.bat y ejecutamos:
+
+c:>cambionombre Hp
+
+En este caso %1 será igual a Hp
+
+@echo off
+Oculta la ejecución de los comandos
+
+cls
+Limpia la pantalla
+
+echo
+Imprime un texto en el cmd
+
+pause
+Detiene la ejecución del script hasta pulsar una tecla
+
+reg add
+Añade una clave del registro
+
+Modificador: /v
+Indica el nombre de la clave
+
+Modificador: /t
+Indica el tipo de clave
+
+Modificador: /d
+Indica el valor de la clave
+
+Modificador: /f
+Fuerza la adición de la clave, si existe la reescribe
+
+shutdown
+Comando para apagar, reiniciar, cerrar sesión… para más ayuda ejecutar en cmd “shutdown /?”
+
+Y bueno, con este superresumén y recuerdo de los comandos del cmd (recuerdo que hay otros artículos que tratan el tema de los ficheros batch en el blog) creo que ya podemos proceder con la descarga del videotutorial, vamos con ella!
