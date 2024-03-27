@@ -1,0 +1,3 @@
+Sub AbrirConfiguracionRegional()
+    Shell "control intl.cpl", vbNormalFocus
+End Sub
