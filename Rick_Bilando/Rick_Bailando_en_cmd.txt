@@ -1,0 +1,6 @@
+@echo off
+:loop
+cls
+curl ascii.live/rick
+timeout /t 1 >nul
+goto loop
