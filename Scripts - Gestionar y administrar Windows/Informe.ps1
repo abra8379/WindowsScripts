@@ -31,6 +31,11 @@ Escribir-Titulo "PLACA BASE"
 Get-CimInstance Win32_BaseBoard | Select-Object Manufacturer, Product | Out-File -Append $ruta
 
 # =============================================
+# Número de serie del equipo
+Escribir-Titulo "NÚMERO DE SERIE DEL EQUIPO"
+Get-CimInstance Win32_BIOS | Select-Object SerialNumber | Out-File -Append $ruta
+
+# =============================================
 # Sistema Operativo
 Escribir-Titulo "SISTEMA OPERATIVO"
 Get-CimInstance Win32_OperatingSystem | Select-Object Caption, OSArchitecture, Version, BuildNumber | Out-File -Append $ruta
