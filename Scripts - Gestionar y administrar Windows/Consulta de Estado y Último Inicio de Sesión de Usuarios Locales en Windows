@@ -1,1 +1,1 @@
-Get-LocalUser -Name "elendill" | Select-Object Name, Enabled, Description, LastLogon
+Get-LocalUser -Name "NOMBRE_DE_TUI_USUARIO_LOCAL" | Select-Object Name, Enabled, Description, LastLogon
