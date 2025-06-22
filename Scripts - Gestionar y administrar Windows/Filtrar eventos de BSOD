@@ -1,0 +1,20 @@
+# Definir IDs críticos a buscar
+$eventosCriticos = 41, 6008, 1001
+
+# Ruta de salida
+$fecha = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+$rutaSalida = "$env:USERPROFILE\Desktop\Eventos_Sistema_$fecha.txt"
+
+# Obtener y filtrar eventos
+$eventos = Get-WinEvent -FilterHashtable @{LogName='System'; Id=$eventosCriticos} |
+    Select-Object TimeCreated, Id, Message |
+    Sort-Object TimeCreated -Descending
+
+# Mostrar en consola
+$eventos | Format-Table -AutoSize
+
+# Exportar a archivo de texto
+$eventos | Out-File -FilePath $rutaSalida -Encoding UTF8
+
+# Confirmación
+Write-Host "`n Eventos exportados correctamente a:`n$rutaSalida" -ForegroundColor Green
