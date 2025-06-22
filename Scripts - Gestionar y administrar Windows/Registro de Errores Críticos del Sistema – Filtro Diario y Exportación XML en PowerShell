@@ -1,0 +1,7 @@
+Get-WinEvent -LogName System |
+    Where-Object { 
+        $_.LevelDisplayName -eq "Error" -and 
+        $_.Message -match "error|freeze|disk|memory|kernel|power|fail" -and
+        $_.TimeCreated -ge (Get-Date).Date
+    } |
+    Export-Clixml -Path "C:\Logs\FilteredErrorsToday.xml"
