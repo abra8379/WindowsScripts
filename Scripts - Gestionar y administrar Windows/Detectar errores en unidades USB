@@ -1,0 +1,4 @@
+# Lista todos los dispositivos USB que tienen algún problema
+Get-PnpDevice -Class USB | Where-Object { $_.Status -ne "OK" } |
+Select-Object Status, Class, FriendlyName, InstanceId |
+Format-Table -AutoSize
