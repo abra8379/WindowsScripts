@@ -1,0 +1,1 @@
+Get-NetTCPConnection | Where-Object { $_.State -eq "Established" } | Format-Table LocalAddress, LocalPort, RemoteAddress, RemotePort, OwningProcess
