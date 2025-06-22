@@ -1,0 +1,1 @@
+Get-WinEvent -LogName System | Select-Object -First 20 TimeCreated, Id, Message | Format-Table -AutoSize
