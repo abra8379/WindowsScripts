@@ -1,0 +1,1 @@
+Get-WmiObject -Class Win32_Product | Select-Object Name, InstallDate, @{Name="User"; Expression={(Get-WmiObject -Query "SELECT * FROM Win32_Process WHERE Name='msiexec.exe'").GetOwner().User}} | Format-Table -AutoSize
