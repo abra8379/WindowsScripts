@@ -1,0 +1,2 @@
+Get-ADUser -Identity "NOMBRE_DE_USUARIO_DE_DOMINIO" -Properties LastLogonDate, Enabled, Description |
+Select-Object Name, Enabled, Description, LastLogonDate
