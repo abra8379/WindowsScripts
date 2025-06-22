@@ -1,0 +1,1 @@
+wmic memphysical get MaxCapacity, MemoryDevices
