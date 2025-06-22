@@ -1,0 +1,22 @@
+# Ruta del archivo original
+$archivoOriginal = "C:\Ruta\ArchivoGrande.xlsx"
+$excel = New-Object -ComObject Excel.Application
+$excel.Visible = $false
+$libro = $excel.Workbooks.Open($archivoOriginal)
+
+# Carpeta donde guardarás las hojas separadas
+$destino = "C:\Ruta\Dividido\"
+New-Item -ItemType Directory -Force -Path $destino | Out-Null
+
+# Exportar cada hoja
+foreach ($hoja in $libro.Worksheets) {
+    $nuevoLibro = $excel.Workbooks.Add()
+    $hoja.Copy($nuevoLibro.Worksheets.Item(1))
+    $nuevoNombre = $destino + $hoja.Name.Replace(" ", "_") + ".xlsx"
+    $nuevoLibro.SaveAs($nuevoNombre, 51)  # 51 = formato .xlsx
+    $nuevoLibro.Close($false)
+}
+
+$libro.Close($false)
+$excel.Quit()
+[System.Runtime.Interopservices.Marshal]::ReleaseComObject($excel)
