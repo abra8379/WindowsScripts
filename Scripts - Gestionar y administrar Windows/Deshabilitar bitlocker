@@ -1,0 +1,1 @@
+Suspend-BitLocker -MountPoint "C:"
