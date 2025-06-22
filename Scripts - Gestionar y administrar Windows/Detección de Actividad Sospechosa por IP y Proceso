@@ -1,0 +1,17 @@
+Get-NetTCPConnection |
+Where-Object {
+    $_.State -eq 'Established' -and
+    $_.RemoteAddress -notlike '127.*' -and
+    $_.RemoteAddress -notlike '192.168.*' -and
+    $_.RemoteAddress -ne '::1'
+} |
+Select-Object RemoteAddress, RemotePort, OwningProcess |
+ForEach-Object {
+    $proc = (Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue)
+    [PSCustomObject]@{
+        RemoteIP     = $_.RemoteAddress
+        RemotePort   = $_.RemotePort
+        PID          = $_.OwningProcess
+        ProcessName  = if ($proc) { $proc.ProcessName } else { "Desconocido o terminado" }
+    }
+} | Sort-Object RemoteIP | Format-Table -AutoSize
