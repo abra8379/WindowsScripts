@@ -1,0 +1,1 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NoExit -ExecutionPolicy Bypass -File "D:\Script\SuperPoner Terminal de Powershell\Otra variante\PowerShell_Siempre_Encima.ps1"
